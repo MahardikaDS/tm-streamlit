@@ -5,7 +5,7 @@ import gdown
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
-MODEL_URL = "https://drive.google.com/uc?id=1-1v6HxN7-ids_g51rlFztG_dcc-MTMjb"
+MODEL_URL = "https://drive.google.com/uc?id=19h_PmH-MdkmKUebcqQiq--6itfodcqcM
 MODEL_PATH = "bertopic_model.pkl"
 
 @st.cache_resource
