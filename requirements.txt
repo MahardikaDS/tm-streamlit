@@ -1,0 +1,8 @@
+streamlit
+bertopic
+sentence-transformers
+wordcloud
+matplotlib
+pandas
+scikit-learn
+gdown
