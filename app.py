@@ -28,15 +28,18 @@ if st.button("🔍 Analisis Topik"):
         st.warning("Masukkan setidaknya satu komentar terlebih dahulu.")
     else:
         comments = [line.strip() for line in user_input.split("\n") if line.strip()]
-        topics, probs = topic_model.transform(comments)
+        
+        # Gunakan transform tanpa probabilitas
+        topics = topic_model.transform(comments, calculate_probabilities=False)
+        probs = [None] * len(topics)
 
         st.subheader("📌 Hasil Topik Modeling")
-        for i, (comment, topic_id, prob) in enumerate(zip(comments, topics, probs)):
+        for i, (comment, topic_id) in enumerate(zip(comments, topics)):
             st.markdown(f"**Komentar {i+1}:** {comment}")
             if topic_id == -1:
                 st.warning("Topik tidak dikenali.")
             else:
-                st.success(f"Prediksi Topik: `{topic_id}` (Probabilitas: {prob:.2f})")
+                st.success(f"Prediksi Topik: `{topic_id}`")
                 words = topic_model.get_topic(topic_id)
                 st.markdown("**Keyword Utama:** " + ", ".join([w[0] for w in words]))
                 wordcloud = WordCloud(width=600, height=300, background_color='white')
