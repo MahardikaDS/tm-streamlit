@@ -29,9 +29,8 @@ if st.button("🔍 Analisis Topik"):
     else:
         comments = [line.strip() for line in user_input.split("\n") if line.strip()]
         
-        # Gunakan transform tanpa probabilitas
-        topics = topic_model.transform(comments, calculate_probabilities=False)
-        probs = [None] * len(topics)
+        # Gunakan fit_transform agar tidak error karena UMAP
+        topics, _ = topic_model.fit_transform(comments)
 
         st.subheader("📌 Hasil Topik Modeling")
         for i, (comment, topic_id) in enumerate(zip(comments, topics)):
